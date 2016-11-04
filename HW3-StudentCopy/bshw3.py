@@ -10,3 +10,12 @@
 
 # Deliverables
 # Make sure the new page is uploaded to your GitHub account.
+
+
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+
+url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html'
+student = soup('a')
+
+for student in soup.find_all(class_= "story-heading")
