@@ -10,37 +10,28 @@
 # 1) Print the orginal text (150 tokens)
 # 1) Print the new text
 
+
 print("START*******")
 import nltk # requires some downloading/installing dependencies to use all its features; numpy is especially tricky to install
 import random
-
-# import nltk
-nltk.download('punkt')
-
 from nltk import word_tokenize,sent_tokenize
+from nltk.book import *
 
-debug = False #True
 
-# get file from user to make mad lib out of
-if debug:
-	print ("Getting information from file madlib_test.txt...\n")
-fname = "madlibtext1.txt" # need a file with this name in directory
-
-f = open(fname, 'r')
-para = f.read()
-tokens = nltk.word_tokenize(para)
+tokens = text2[0:150]
 print("TOKENS")
 print(tokens)
 tagged_tokens = nltk.pos_tag(tokens) # gives us a tagged list of tuples
 print("TAGGED TOKENS")
 print(tagged_tokens)
+'''
 if debug:
 	print ("First few tagged tokens are:")
-	for tup in tagged_tokens[:5]:
+	for tup in tagged_tokens[:150]:
 		print (tup)
-
-tagmap = {"NN":"a noun","NNS":"a plural noun","VB":"a verb","JJ":"an adjective"}
-substitution_probabilities = {"NN":.1,"NNS":.2,"VB":.25,"JJ":.25}
+'''
+tagmap = {"NN":"a noun","NNS":"a plural noun","VB":"a verb","JJ":"an adjective", "RB":"an adverb"}
+substitution_probabilities = {"NN":.15,"NNS":.15,"VB":.10,"JJ":.10,"RB":.10}
 
 def spaced(word):
 	if word in [",", ".", "?", "!", ":"]:
@@ -50,7 +41,6 @@ def spaced(word):
 
 final_words = []
 
-
 for (word, tag) in tagged_tokens:
 	if tag not in substitution_probabilities or random.random() > substitution_probabilities[tag]:
 		final_words.append(spaced(word))
@@ -58,6 +48,13 @@ for (word, tag) in tagged_tokens:
 		new_word = input("Please enter %s:\n" % (tagmap[tag]))
 		final_words.append(spaced(new_word))
 
+
+print ("The Original Text")
+for word in tokens:
+	print (spaced(word), end="")
+print ("\n")
+
+print ("New Madlib Text")
 print ("".join(final_words))
 
 print("\n\nEND*******")
