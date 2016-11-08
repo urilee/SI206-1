@@ -5,7 +5,7 @@
 # 1) Replace every occurrence of the word “student” with “AMAZING
 # student.”  
 # 2) Replace the main picture with a picture of yourself.
-# 3) Replace any local images with the image I provided in media.  (You
+# 3) Replace any local images with the image I provided in media. (You
 # must keep the image in a separate folder than your html code.
 
 # Deliverables
@@ -16,6 +16,13 @@ import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 
 url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html'
-student = soup('a')
+html = urllib.request.urlopen(url).read()
+soup = BeautifulSoup(html, 'html.parser')
 
-for student in soup.find_all(class_= "story-heading")
+html = soup.prettify("utf-8")
+new = with open("output.html", "wb") as file:
+	file.write(html)
+for line in new:
+	student = line.find("student")
+	student.replace("student", "AMAZING student")
+
