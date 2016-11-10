@@ -10,6 +10,10 @@ import tweepy
 from textblob import TextBlob
 
 # Unique code from Twitter
+access_token = "791351718848106496-KAqyEI05EPyiUY25nETH2RNmCDVTnyf"
+access_token_secret = "2lGs3MDpDuwsv3jJ2x9hLoxrfkcmLN0mWpLX2dBMYSHJF"
+consumer_key = "w7Wd8g3CDr6EyZfv1KqnOtirv"
+consumer_secret = "9v8PBOJOPbucqL7FhTAOYJnXN97quRbwHjt7GtGE3TJBWnkzTv"
 
 # Boilerplate code here
 auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
@@ -17,17 +21,20 @@ auth.set_access_token(access_token,access_token_secret)
 
 api = tweepy.API(auth)
 #Now we can Create Tweets, Delete Tweets, and Find Twitter Users
-avgsubjectivity = 0.0
-avgpolarity = 0.0
+subjectivity = 0.0
+polarity = 0.0
+totalsub = 0.0
+totalpol = 0.0
 
 public_tweets = api.search('minimal tattoos')
 
 for tweet in public_tweets:
 	print(tweet.text)
 	analysis = TextBlob(tweet.text)
-	avgsubjectivity += analysis.sentiment.subjectivity
-	avgpolarity += analysis.sentiment.polarity
+	subjectivity += analysis.sentiment.subjectivity
+	polarity += analysis.sentiment.polarity
+	totalsub += 1
+	totalpol += 1
 
-
-print("Average subjectivity is " + str(avgsubjectivity))
-print("Average polarity is " + str(avgpolarity))
+print("Average subjectivity is " + str(subjectivity/totalsub))
+print("Average polarity is " + str(polarity/totalpol))
