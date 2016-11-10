@@ -27,7 +27,7 @@ for tweet in public_tweets:
 	analysis = TextBlob(tweet.text)
 	avgsubjectivity += analysis.sentiment.subjectivity
 	avgpolarity += analysis.sentiment.polarity
-	#print(analysis.sentiment)
+
 
 print("Average subjectivity is " + str(avgsubjectivity))
 print("Average polarity is " + str(avgpolarity))
