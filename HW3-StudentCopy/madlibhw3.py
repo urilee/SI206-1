@@ -19,17 +19,8 @@ from nltk.book import *
 
 
 tokens = text2[0:150]
-print("TOKENS")
-print(tokens)
 tagged_tokens = nltk.pos_tag(tokens) # gives us a tagged list of tuples
-print("TAGGED TOKENS")
-print(tagged_tokens)
-'''
-if debug:
-	print ("First few tagged tokens are:")
-	for tup in tagged_tokens[:150]:
-		print (tup)
-'''
+
 tagmap = {"NN":"a noun","NNS":"a plural noun","VB":"a verb","JJ":"an adjective", "RB":"an adverb"}
 substitution_probabilities = {"NN":.15,"NNS":.15,"VB":.10,"JJ":.10,"RB":.10}
 
