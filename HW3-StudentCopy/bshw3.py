@@ -34,6 +34,5 @@ for image in soup.find_all("img", src = True):
 
 f = open("bshw3.html", "wb")
 f.write(html2)
-#f.close()
 
 
