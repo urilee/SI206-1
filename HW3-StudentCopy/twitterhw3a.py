@@ -8,10 +8,6 @@ import tweepy
 
 # Unique code from Twitter
 
-access_token = "791351718848106496-KAqyEI05EPyiUY25nETH2RNmCDVTnyf"
-access_token_secret = "2lGs3MDpDuwsv3jJ2x9hLoxrfkcmLN0mWpLX2dBMYSHJF"
-consumer_key = "w7Wd8g3CDr6EyZfv1KqnOtirv"
-consumer_secret = "9v8PBOJOPbucqL7FhTAOYJnXN97quRbwHjt7GtGE3TJBWnkzTv"
 
 # Boilerplate code here
 auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
