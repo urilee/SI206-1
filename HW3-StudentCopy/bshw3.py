@@ -14,15 +14,26 @@
 
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
+import re
 
 url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html'
 html = urllib.request.urlopen(url).read()
 soup = BeautifulSoup(html, 'html.parser')
+new_string = str(soup)
+html2 = soup.prettify("utf-8")
 
-html = soup.prettify("utf-8")
-new = with open("output.html", "wb") as file:
-	file.write(html)
-for line in new:
-	student = line.find("student")
-	student.replace("student", "AMAZING student")
+for new_changes in soup.find_all(text = re.compile('student')):
+	new_changes.replace("students", "AMAZING students")
+
+for image in soup.find_all("img", src = True):
+	if image.get('src') == "https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg":
+		image['src'] = "IMG_5778.jpg"
+	else:
+		image['src'] = "media/logo.png"
+
+
+f = open("bshw3.html", "wb")
+f.write(html2)
+#f.close()
+
 
