@@ -10,20 +10,28 @@ import tweepy
 from textblob import TextBlob
 
 # Unique code from Twitter
-
+access_token = ""
+access_token_secret = ""
+consumer_key = ""
+consumer_secret = ""
 
 # Boilerplate code here
 auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
 auth.set_access_token(access_token,access_token_secret)
 
 api = tweepy.API(auth)
-#Now we can Create Tweets, Delete Tweets, and Find Twitter Users
+
 subjectivity = 0.0
 polarity = 0.0
 totalsub = 0.0
 totalpol = 0.0
 
+#what to search for
+
 public_tweets = api.search('minimal tattoos')
+
+#gonna use this for demo
+#public_tweets = api.search(input("Search Twitter: "))
 
 for tweet in public_tweets:
 	print(tweet.text)
@@ -33,5 +41,7 @@ for tweet in public_tweets:
 	totalsub += 1
 	totalpol += 1
 
+#subjectivity -- measures how factual
+#polarity -- measures how positive or negative
 print("Average subjectivity is " + str(subjectivity/totalsub))
 print("Average polarity is " + str(polarity/totalpol))
