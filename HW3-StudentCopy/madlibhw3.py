@@ -10,25 +10,36 @@
 # 1) Print the orginal text (150 tokens)
 # 1) Print the new text
 
-
-print("START*******")
-import nltk # requires some downloading/installing dependencies to use all its features; numpy is especially tricky to install
+# requires some downloading/installing dependencies to use all its features; numpy is especially tricky to install
+import nltk 
 import random
 from nltk import word_tokenize,sent_tokenize
 from nltk.book import *
 
-
-tokens = text2[0:150]
-tagged_tokens = nltk.pos_tag(tokens) # gives us a tagged list of tuples
-
-tagmap = {"NN":"a noun","NNS":"a plural noun","VB":"a verb","JJ":"an adjective", "RB":"an adverb"}
-substitution_probabilities = {"NN":.15,"NNS":.15,"VB":.10,"JJ":.10,"RB":.10}
 
 def spaced(word):
 	if word in [",", ".", "?", "!", ":"]:
 		return word
 	else:
 		return " " + word
+
+print ("\n")		
+print("START*******")
+
+#first 150 tokens
+tokens = text2[:150]
+tagged_tokens = nltk.pos_tag(tokens) # gives us a tagged list of tuples
+
+#original text
+print ("\n")
+print ("The Original Text")
+for word in tokens:
+	print (spaced(word), end="")
+print ("\n")
+
+
+tagmap = {"NN":"a noun","VBD":"past tense verbs","VB":"a verb","JJ":"an adjective", "RB":"an adverb"}
+substitution_probabilities = {"NN":.15,"VBD":.10,"VB":.10,"JJ":.10,"RB":.10}
 
 final_words = []
 
@@ -40,11 +51,8 @@ for (word, tag) in tagged_tokens:
 		final_words.append(spaced(new_word))
 
 
-print ("The Original Text")
-for word in tokens:
-	print (spaced(word), end="")
+#new Madlib text
 print ("\n")
-
 print ("New Madlib Text")
 print ("".join(final_words))
 
