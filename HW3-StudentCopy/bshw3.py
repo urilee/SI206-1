@@ -36,6 +36,7 @@ for image in soup.find_all("img", src = True):
 	else:
 		image['src'] = "media/logo.png"
 
+#new html output
 html = soup.prettify("utf-8")
 f = open("bshw3.html", "wb")
 f.write(html)
